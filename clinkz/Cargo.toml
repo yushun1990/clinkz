@@ -1,0 +1,19 @@
+[package]
+name = "clinkz"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+mimalloc.workspace = true
+
+clap.workspace = true
+config.workspace = true
+dotenv.workspace = true
+
+tracing.workspace = true
+tracing-log.workspace = true
+tracing-subscriber.workspace = true
+
+tokio.workspace = true
+
+axum.workspace = true

@@ -1,0 +1,14 @@
+[package]
+name = "clinkz-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde.workspace = true
+
+thiserror.workspace = true
+anyhow.workspace = true
+
+validator.workspace = true
+
+axum.workspace = true
