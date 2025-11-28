@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["clinkz", "clinkz-cloud", "clinkz-core", "clinkz-edge"]
+members = ["clinkz", "clinkz-auth", "clinkz-cloud", "clinkz-core", "clinkz-edge"]
 
 [workspace.package]
 license = "MIT"
