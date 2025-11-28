@@ -13,5 +13,7 @@ CREATE TABLE IF NOT EXISTS oauth_clients (
     updated_by         UUID         NOT NULL,
     updated_at         TIMESTAMPTZ  NOT NULL        DEFAULT now(),
     deleted_by         UUID         NULL,
-    deleted_at         TIMESTAMPTZ  NULL
+    deleted_at         TIMESTAMPTZ  NULL,
+    CONSTRAINT uq_active_client UNIQUE (tenant_id,  client_id) WHERE deleted_at IS NULL,
+    INDEX idx_clients_tenant(tenant_id)
 );

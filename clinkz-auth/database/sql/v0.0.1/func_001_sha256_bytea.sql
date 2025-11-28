@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION sha256_bytea(input TEXT)
+RETURNS BYTEA AS $$
+    SELECT digest(input, 'SHA256');
+$$ LANGUAGE sql IMMUTABLE;
