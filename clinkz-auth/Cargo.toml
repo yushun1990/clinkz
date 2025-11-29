@@ -5,4 +5,6 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+thiserror.workspace = true
+uuid = { workspace = true, features = ["v7"]}
 axum.workspace = true
