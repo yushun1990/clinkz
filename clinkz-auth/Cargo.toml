@@ -8,3 +8,6 @@ edition.workspace = true
 thiserror.workspace = true
 uuid = { workspace = true, features = ["v7"]}
 axum.workspace = true
+sqlx.workspace = true
+redis.workspace = true
+deadpool-redis.workspace = true

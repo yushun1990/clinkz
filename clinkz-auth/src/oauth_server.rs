@@ -3,22 +3,21 @@ use std::time::Duration;
 use axum::Router;
 
 #[derive(Debug, Clone)]
+pub struct OAuthServerConfig {
+    pub issuer: Option<String>,
+    pub access_token_ttl: Option<Duration>,
+    pub refresh_token_ttl: Option<Duration>,
+    pub enable_device_flow: Option<bool>,
+    pub redis_conn_poll: Option<deadpool_redis::Pool>,
+    pub pg_pool: Option<sqlx::PgPool>,
+}
+
+#[derive(Debug, Clone)]
 pub struct OAuthServer {
     pub issuer: String,
     pub access_token_ttl: Duration,
     pub refresh_token_ttl: Duration,
     pub enable_device_flow: bool,
-}
-
-impl Default for OAuthServer {
-    fn default() -> Self {
-        Self {
-            issuer: String::from("https://auth.clinkz.com"),
-            access_token_ttl: Duration::from_mins(10),
-            refresh_token_ttl: Duration::from_hours(24*30),
-            enable_device_flow: true
-        }
-    }
 }
 
 impl OAuthServer {

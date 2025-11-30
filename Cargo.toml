@@ -36,3 +36,7 @@ validator = { version = "0.20", features = ["derive"] }
 tokio = "1.48"
 
 axum = "0.8"
+
+sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls", "uuid", "chrono", "migrate"] }
+redis = { version = "0.32", features = ["tokio-comp", "connection-manager"] }
+deadpool-redis = "0.22"
