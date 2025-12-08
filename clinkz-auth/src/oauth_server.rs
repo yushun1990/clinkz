@@ -12,7 +12,7 @@ pub struct OAuthServerConfig {
     pub pg_pool: Option<sqlx::PgPool>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct OAuthServer {
     pub issuer: String,
     pub access_token_ttl: Duration,
