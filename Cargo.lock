@@ -375,6 +375,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "clinkz-core",
  "quote",
  "serde",
  "serde_json",

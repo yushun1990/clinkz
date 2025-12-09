@@ -31,14 +31,9 @@ pub fn http_status(attr: TokenStream, item: TokenStream) -> TokenStream {
     let expanded = quote! {
         #parsed_item
 
-        impl axum::response::IntoResponse for #name {
-            fn into_response(self) -> axum::response::Response {
-                use axum::Json;
-                use serde_json::json;
-
-                let status = #status_expr;
-                let body = json!({"error": format!("{}", self)});
-                (status, Json(body)).into_response()
+        impl clinkz_core::HttpStatus for #name {
+            fn status_code(&self) -> axum::http::StatusCode {
+                #status_expr
             }
         }
     };

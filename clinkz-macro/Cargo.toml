@@ -14,5 +14,7 @@ thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 
+clinkz-core = { path = "../clinkz-core" }
+
 syn = "2.0"
 quote = "1.0"
