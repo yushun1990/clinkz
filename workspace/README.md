@@ -1,74 +1,122 @@
-# Decision Workspace
+# Workspace
 
-`workspace/` is the active reasoning area for bounded features, architectural changes, investigations, and refactors.
+Workspace is the repository's active working area.
 
-A workspace preserves the path from an initial request to an accepted requirement and verified implementation.
+Unlike `docs/`, which stores accepted and long-term knowledge, a workspace captures work that is still evolving. It preserves reasoning, evidence, decisions, and implementation progress while the work is active.
 
-## Core Model
+A workspace is temporary.
 
-```text
-Input -> Evidence -> Understanding -> Proposal -> Decision
-      -> Accepted Requirement -> Implementation Plan
-      -> Implementation -> Verification
-```
+Its purpose is to make the thinking process traceable until the work reaches an accepted outcome.
 
-The workspace is not the final source of truth for accepted product knowledge. Once accepted, durable outputs are promoted to `docs/`, machine-readable contracts, source code, or tests.
+---
 
-## Information Classes
+# When to Create a Workspace
 
-### Input
+Create a workspace whenever the work has a clear objective and its reasoning should be preserved.
 
-What stakeholders, external systems, or source materials stated. Preserve original meaning and provenance; do not silently rewrite it as fact.
+Typical examples include:
 
-### Evidence
+* exploring a new idea
+* evaluating a technology
+* designing or changing architecture
+* implementing a feature
+* performing a significant refactoring
 
-Facts established through code inspection, experiments, system observation, standards, or other investigation.
+Small edits, typo fixes, or other isolated changes usually do not require a workspace.
 
-### Understanding
+---
 
-The workspace's current interpretation of the problem, normally captured in `brief.md`. It may evolve while questions remain open.
+# Workspace Lifecycle
 
-### Proposal
-
-A candidate solution or direction. Multiple competing proposals may coexist.
-
-### Decision
-
-An accepted conclusion, including rationale and consequences.
-
-### Requirement
-
-A stable, verifiable commitment promoted to `docs/requirements/` after acceptance.
-
-### Plan
-
-A staged implementation approach. Plans describe intent; they must not be rewritten later to pretend implementation followed them exactly.
-
-### Delivery
-
-Evidence of what was actually implemented, deviations from plan, requirement coverage, and verification results.
-
-## Workspace Lifecycle
-
-1. Create a bounded workspace from `workspace/templates/feature/`.
-2. Capture original inputs without rewriting them.
-3. Investigate the current system and record evidence.
-4. Maintain a concise `brief.md` representing the current understanding.
-5. Record unresolved matters in `questions.md`.
-6. Compare proposals and record explicit decisions.
-7. Promote accepted requirements, architecture, ADRs, and contracts into `docs/`.
-8. Produce implementation plans only after requirements and key contracts are sufficiently stable.
-9. Record actual delivery and verification.
-10. Close the workspace without deleting its history.
-
-## Naming
-
-Use a short, descriptive, kebab-case identifier:
+A workspace typically evolves through the following stages:
 
 ```text
-workspace/features/alarm-acknowledgement/
-workspace/architecture/protocol-binding-lifecycle/
-workspace/investigations/telemetry-storage-options/
+Idea
+    ↓
+Workspace
+    ↓
+Research / Design / Implementation
+    ↓
+Accepted Outcome
+    ↓
+Promote Stable Knowledge
+    ↓
+Archive
 ```
 
-Avoid creating one permanent workspace for the entire project. Each workspace should have a clear scope and closure condition.
+Not every workspace follows the same path.
+
+The workflow should support the work rather than constrain it.
+
+---
+
+# Working in a Workspace
+
+Every workspace starts with only one required file:
+
+`README.md`
+
+The workspace README should briefly describe:
+
+* Purpose
+* Scope
+* Status
+* Expected Outputs
+
+Everything else is created only when it becomes useful.
+
+Examples include:
+
+* evidence/
+* notes/
+* proposal.md
+* decision.md
+* requirement.md
+* plan.md
+* delivery.md
+* verification.md
+
+Artifacts exist to support the work, not because a predefined template requires them.
+
+---
+
+# Promotion
+
+A workspace is **not** the project's permanent source of knowledge.
+
+Once work reaches an accepted outcome, stable information should be promoted into the repository.
+
+Typical promotion targets include:
+
+* `docs/`
+* ADRs
+* architecture documentation
+* contracts
+* tests
+* source code
+
+Working notes, proposals, brainstorming, and other intermediate artifacts should remain in the workspace.
+
+---
+
+# Closing a Workspace
+
+A workspace should be considered complete when one of the following is true:
+
+* the work has been completed
+* the work has been abandoned
+* the accepted outcomes have been promoted
+
+Completed workspaces should be moved into `workspace/archive/`.
+
+The archive preserves historical context without cluttering active work.
+
+---
+
+# Principles
+
+* Workspaces preserve thinking.
+* Documentation preserves accepted knowledge.
+* Create artifacts only when they are useful.
+* Promote stable knowledge.
+* Archive completed work.

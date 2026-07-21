@@ -4,17 +4,16 @@
 
 This repository follows a workspace-driven development model.
 
-A workspace is a bounded area for active work. Its purpose is to preserve reasoning, decisions, and evidence while work is in progress.
+A workspace is a bounded area for active work. It preserves reasoning, evidence and decisions while work is in progress.
 
 Workspaces are temporary.
-
-Accepted outcomes are promoted into the project's permanent knowledge (`docs/`), executable contracts, tests, or source code.
+Accepted outcomes are promoted into permanent project assets such as documentation, contracts, tests and source code.
 
 ---
 
-# Before Starting Work
+## Before Starting Work
 
-Before making significant changes, determine:
+Determine:
 
 - What problem is being solved?
 - Is there already an active workspace?
@@ -22,39 +21,33 @@ Before making significant changes, determine:
 
 Reuse an existing workspace whenever practical.
 
-Create a new workspace only when the work has a distinct objective.
-
 ---
 
-# Workspace Types
-
-Choose the workspace type that best matches the work.
-
-Typical workspace categories include:
+## Workspace Types
 
 - research
 - architecture
-- feature
+- features
 - refactoring
 
-A workspace represents a bounded piece of work, not a project phase.
+Choose the type that best matches the work.
 
 ---
 
-# Workspace Structure
+## Workspace
 
-Each workspace starts with only one required file:
+Every workspace begins with only one required file:
 
 README.md
 
-The README should briefly describe:
+The README should describe:
 
-- purpose
-- scope
-- current status
-- expected outputs
+- Purpose
+- Scope
+- Status
+- Expected Outputs
 
-Everything else is created only when needed.
+All other artifacts are created only when they become useful.
 
 Examples:
 
@@ -67,15 +60,11 @@ Examples:
 - delivery.md
 - verification.md
 
-Do not create artifacts that are unlikely to be used.
-
-Artifacts exist to support the work, not because a template requires them.
+Avoid creating empty artifacts in advance.
 
 ---
 
-# Workspace Flow
-
-A typical workspace evolves naturally.
+## Workspace Flow
 
 Input
 
@@ -103,68 +92,28 @@ Decision
 
 Outputs
 
-Not every workspace passes through every stage.
-
-The flow should follow the work rather than forcing the work to follow the flow.
+Not every workspace requires every stage.
 
 ---
 
-# Outputs
-
-Workspace outputs depend on the type of work.
-
-Research may produce:
-
-- architecture documents
-- design principles
-- future work
-
-Architecture may produce:
-
-- architecture documentation
-- ADRs
-- interface contracts
-
-Feature work may produce:
-
-- requirements
-- implementation plans
-- source code
-- tests
-- user documentation
-
-Refactoring may produce:
-
-- implementation improvements
-- simplified architecture
-- migration notes
-
----
-
-# Promotion
+## Promotion
 
 Workspaces are temporary.
 
-Only stable, accepted knowledge should be promoted.
-
-Typical promotion targets include:
+Only accepted knowledge should be promoted into:
 
 - docs/
-- ADRs
-- architecture documents
 - contracts
 - tests
 - source code
 
-A workspace should never become the long-term source of truth.
+A workspace is never the long-term source of truth.
 
 ---
 
-# Source of Truth
+## Source of Truth
 
-When information conflicts, use the following order:
-
-1. Executable contracts
+1. Contracts
 2. Tests
 3. Source code
 4. Accepted documentation
@@ -174,28 +123,13 @@ When information conflicts, use the following order:
 
 ---
 
-# Agent Principles
+## Agent Principles
 
-Work incrementally.
-
-Record important decisions.
-
-Keep assumptions explicit.
-
-Separate facts from opinions.
-
-Separate proposals from decisions.
-
-Avoid speculative implementation.
-
-Prefer evidence over intuition.
-
-Promote stable knowledge.
-
-Delete obsolete reasoning instead of maintaining contradictory documents.
-
-Keep workspaces focused.
-
-Avoid unnecessary structure.
-
-The workflow exists to support thinking, not to constrain it.
+- Work incrementally.
+- Keep assumptions explicit.
+- Separate facts from opinions.
+- Separate proposals from decisions.
+- Prefer evidence over intuition.
+- Promote stable knowledge.
+- Keep workspaces focused.
+- Avoid unnecessary structure.
