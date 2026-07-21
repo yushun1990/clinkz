@@ -94,5 +94,4 @@ The project is currently design-led. Architectural review, requirement clarifica
 Before proposing substantial implementation work, start or join a workspace so that inputs, evidence, decisions, and requirements remain traceable.
 
 ## License
-
-License selection is pending.
+Licensed under the [Apache License 2.0](LICENSE).
