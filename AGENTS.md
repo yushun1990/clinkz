@@ -1,260 +1,201 @@
 # AGENTS.md
 
-This file defines how coding and reasoning agents should work in the ClinkZ repository.
+# ClinkZ Repository Working Agreement
 
-ClinkZ uses a workspace-driven development method. The purpose of this method is to preserve the path from an initial request to an accepted requirement, an explicit implementation plan, and verified delivery.
+This repository follows a workspace-driven development model.
 
-## Repository Operating Model
+A workspace is a bounded area for active work. Its purpose is to preserve reasoning, decisions, and evidence while work is in progress.
 
-The repository separates active reasoning from durable project knowledge:
+Workspaces are temporary.
 
-- `workspace/` contains bounded, evolving work.
-- `docs/` contains accepted and durable project knowledge.
-- contracts contain machine-readable interfaces and schemas.
-- source code contains implementation.
-- tests contain executable verification.
+Accepted outcomes are promoted into the project's permanent knowledge (`docs/`), executable contracts, tests, or source code.
 
-The workspace is not the final source of truth. Stable conclusions must be promoted to their authoritative destination.
+---
 
-## Before Starting Work
+# Before Starting Work
 
-Before modifying code or durable documentation:
+Before making significant changes, determine:
 
-1. Read the repository-level `AGENTS.md`.
-2. Read any more specific `AGENTS.md` files in the directories being changed.
-3. Inspect the latest relevant source code, tests, contracts, and documentation.
-4. Check for an existing workspace covering the same bounded problem.
-5. Reuse and update that workspace when its scope matches; do not create competing workspaces for the same decision.
+- What problem is being solved?
+- Is there already an active workspace?
+- What type of work is this?
 
-Do not assume that a plan, proposal, or earlier discussion reflects the current implementation. Verify current facts from the repository.
+Reuse an existing workspace whenever practical.
 
-## When a Workspace Is Required
+Create a new workspace only when the work has a distinct objective.
 
-Create or use a workspace when the task involves one or more of the following:
+---
 
-- a new product capability;
-- an architectural change;
-- a cross-module refactor;
-- a change to public APIs, contracts, schemas, or persistence models;
-- a change with meaningful alternatives or unresolved questions;
-- an investigation whose result may affect later implementation;
-- work that spans multiple implementation steps or pull requests;
-- a decision with consequences that future contributors must understand.
+# Workspace Types
 
-A workspace is usually unnecessary for a small, local, low-risk correction whose expected behavior is already established, such as:
+Choose the workspace type that best matches the work.
 
-- fixing a typo;
-- correcting an obviously incorrect local implementation;
-- adding a missing test for already documented behavior;
-- mechanical formatting or dependency maintenance without design impact.
+Typical workspace categories include:
 
-When uncertain, prefer a small bounded workspace over hiding reasoning in chat, commit messages, or code comments.
+- research
+- architecture
+- feature
+- refactoring
 
-## Creating a Workspace
+A workspace represents a bounded piece of work, not a project phase.
 
-Use the closest template under `workspace/templates/`.
+---
 
-For a feature:
+# Workspace Structure
 
-```text
-workspace/templates/feature/
-    -> workspace/features/<short-kebab-case-name>/
-```
+Each workspace starts with only one required file:
 
-Each workspace must have:
+README.md
 
-- a bounded purpose;
-- explicit scope and non-scope;
-- expected durable outputs;
-- closure criteria;
-- a status that reflects its real state.
+The README should briefly describe:
 
-Do not create one permanent workspace for the entire project. A workspace must describe one bounded problem and have a clear end condition.
+- purpose
+- scope
+- current status
+- expected outputs
 
-## Workspace Information Classes
+Everything else is created only when needed.
 
-Keep different information classes distinct. Do not silently convert one into another.
+Examples:
 
-### Input
+- evidence/
+- notes/
+- proposal.md
+- decision.md
+- requirement.md
+- plan.md
+- delivery.md
+- verification.md
 
-Original stakeholder requests, source material, external constraints, and initial ideas.
+Do not create artifacts that are unlikely to be used.
 
-Preserve original meaning and provenance. Input is not automatically fact or an accepted requirement.
+Artifacts exist to support the work, not because a template requires them.
 
-### Evidence
+---
 
-Facts established through code inspection, experiments, standards, system observation, tests, or other investigation.
+# Workspace Flow
 
-Evidence should identify its source and distinguish observed facts from inference.
+A typical workspace evolves naturally.
 
-### Understanding
-
-The current interpretation of the problem, normally summarized in `brief.md`.
-
-Update the brief as understanding changes. Do not preserve obsolete interpretations as though they remain current.
-
-### Questions
-
-Unresolved matters that block or materially affect the decision.
-
-Keep questions explicit. Mark them resolved with the resulting conclusion or a link to the decision that resolved them.
-
-### Proposal
-
-A candidate solution or direction.
-
-Multiple competing proposals may coexist. A proposal is not accepted merely because it is the newest or most detailed document.
-
-### Decision
-
-An accepted conclusion with rationale, rejected alternatives, and consequences.
-
-A local workspace decision may remain in the workspace. A durable cross-cutting architecture decision should be promoted to `docs/adr/`.
-
-### Requirement
-
-A stable and verifiable commitment.
-
-Accepted requirements belong in `docs/requirements/`. Do not write implementation details as requirements unless they are intentional constraints.
-
-### Plan
-
-A staged implementation approach derived from sufficiently stable requirements and key contracts.
-
-A plan records intended execution. Do not rewrite it after implementation to pretend the work followed the original plan exactly.
-
-### Delivery
-
-A factual record of what was actually implemented, including deviations, deferred work, and affected artifacts.
-
-### Verification
-
-Evidence that accepted requirements and contracts are satisfied.
-
-Verification should point to tests, checks, experiments, or other reproducible evidence. “Implemented” is not verification.
-
-## Required Workflow
-
-For workspace-driven work, follow this progression:
-
-```text
 Input
-  -> Evidence
-  -> Understanding
-  -> Proposals
-  -> Decisions
-  -> Accepted Requirements and Contracts
-  -> Implementation Plan
-  -> Implementation
-  -> Delivery Record
-  -> Verification
-  -> Closure
-```
 
-This is a reasoning order, not a requirement to fill every template file mechanically. Use only the artifacts needed for the task, but do not skip unresolved decisions by disguising them as implementation details.
+↓
 
-## Promotion to Durable Documentation
+Evidence
 
-Promote stable outputs from the workspace to authoritative project locations:
+↓
 
-- accepted product commitments -> `docs/requirements/`;
-- system structure and enduring architectural descriptions -> `docs/architecture/`;
-- durable architecture decisions -> `docs/adr/`;
-- cross-feature or long-lived execution roadmaps -> `docs/plans/`;
-- API, event, schema, and boundary definitions -> `docs/contracts/` or their machine-readable source;
-- operational and development procedures -> `docs/guides/`;
-- executable behavior -> source code and tests.
+Understanding
 
-Promotion means extracting a clean, current, durable document. Do not simply copy the full reasoning history into `docs/`.
+↓
 
-The workspace should link to promoted outputs, and durable documents should link back to relevant decisions when the history is useful.
+Questions
 
-## Planning Rules
+↓
 
-Do not produce a detailed implementation plan while the requirement or key boundary contract remains materially ambiguous.
+Proposal
 
-A good implementation plan:
+↓
 
-- names affected modules and boundaries;
-- orders work by dependency;
-- identifies migrations and compatibility concerns;
-- includes tests and verification work;
-- calls out rollout, observability, and failure handling when relevant;
-- separates required work from optional or deferred work.
+Decision
 
-During implementation, update task status and record discoveries that invalidate earlier assumptions.
+↓
 
-## Implementation Rules
+Outputs
 
-Implementation must follow accepted requirements and decisions, not merely the first proposal.
+Not every workspace passes through every stage.
 
-When implementation reveals a design problem:
+The flow should follow the work rather than forcing the work to follow the flow.
 
-1. stop treating the affected assumption as settled;
-2. record new evidence;
-3. reopen the relevant question or decision;
-4. update requirements, contracts, or plans as needed;
-5. continue only after the changed direction is explicit.
+---
 
-Do not bury architecture changes inside code patches.
+# Outputs
 
-Keep changes scoped to the active workspace. Unrelated cleanup should be avoided or separated unless it is required for correctness.
+Workspace outputs depend on the type of work.
 
-## Delivery and Verification Rules
+Research may produce:
 
-Before declaring work complete:
+- architecture documents
+- design principles
+- future work
 
-- record what was actually delivered;
-- list deviations from the plan;
-- identify deferred or follow-up work;
-- update all promoted durable documents;
-- run relevant formatting, linting, tests, and validation;
-- map verification evidence to the accepted requirements;
-- ensure public contracts and examples match implementation;
-- confirm the workspace closure criteria are satisfied.
+Architecture may produce:
 
-If verification is incomplete, state that explicitly. Do not mark the workspace completed.
+- architecture documentation
+- ADRs
+- interface contracts
 
-## Preserving History
+Feature work may produce:
 
-Do not delete or rewrite workspace history merely because the final decision differs from an earlier proposal.
+- requirements
+- implementation plans
+- source code
+- tests
+- user documentation
 
-Preserve:
+Refactoring may produce:
 
-- meaningful alternatives;
-- evidence used at the time;
-- superseded decisions with clear status;
-- deviations between plan and delivery.
+- implementation improvements
+- simplified architecture
+- migration notes
 
-Correct factual errors when discovered, but make the correction visible when the previous statement influenced a decision.
+---
 
-## Agent Communication
+# Promotion
 
-Agents should make uncertainty explicit and distinguish:
+Workspaces are temporary.
 
-- repository facts;
-- user-provided input;
-- assumptions;
-- inferences;
-- proposals;
-- accepted decisions.
+Only stable, accepted knowledge should be promoted.
 
-When reporting completion, summarize:
+Typical promotion targets include:
 
-- the workspace used or created;
-- durable outputs added or changed;
-- implementation changes;
-- verification performed;
-- unresolved or deferred work.
+- docs/
+- ADRs
+- architecture documents
+- contracts
+- tests
+- source code
 
-## Source of Truth
+A workspace should never become the long-term source of truth.
 
-When artifacts disagree, use this precedence unless a more specific repository rule says otherwise:
+---
 
-1. accepted machine-readable contracts and executable tests;
-2. current accepted requirements and ADRs;
-3. current architecture documentation;
-4. active workspace decisions and plans;
-5. proposals, briefs, and raw inputs.
+# Source of Truth
 
-Do not resolve contradictions silently. Record and correct them in the appropriate authoritative artifact.
+When information conflicts, use the following order:
+
+1. Executable contracts
+2. Tests
+3. Source code
+4. Accepted documentation
+5. Workspace decisions
+6. Workspace proposals
+7. Raw notes
+
+---
+
+# Agent Principles
+
+Work incrementally.
+
+Record important decisions.
+
+Keep assumptions explicit.
+
+Separate facts from opinions.
+
+Separate proposals from decisions.
+
+Avoid speculative implementation.
+
+Prefer evidence over intuition.
+
+Promote stable knowledge.
+
+Delete obsolete reasoning instead of maintaining contradictory documents.
+
+Keep workspaces focused.
+
+Avoid unnecessary structure.
+
+The workflow exists to support thinking, not to constrain it.
