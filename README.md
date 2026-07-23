@@ -1,6 +1,6 @@
 # ClinkZ
 
-> An open IoT platform built on W3C Web of Things, where everything is a Thing.
+> Simple Links. Infinite Possibilities.
 
 ClinkZ is an open-source IoT platform built around the [W3C Web of Things](https://www.w3.org/WoT/) model.
 
