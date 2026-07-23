@@ -87,66 +87,28 @@ ClinkZ is the platform layer built on top of
 Rust Web of Things runtime.
 
 ```mermaid
-flowchart TB
-    subgraph Experience["Applications and Operations"]
-        UI["Generated and Custom UIs"]
-        APP["Applications"]
-        OPS["Operations and Automation"]
-        AI["AI-assisted Services"]
-    end
+flowchart LR
+    A["Applications<br/>UI · Automation · AI"]
+    P["ClinkZ Platform<br/>Registry · Security · Operations"]
+    R["clinkz-wot<br/>TD · Servient · Planning"]
+    B["Protocol Bindings<br/>Zenoh · MQTT · HTTP · ..."]
+    T["Things<br/>Devices · Edge · Cloud · Services"]
 
-    subgraph Platform["ClinkZ Platform"]
-        API["Platform APIs"]
-        REG["Thing Registry and Discovery"]
-        ORCH["Orchestration"]
-        SEC["Identity and Access"]
-        OBS["Observability"]
-    end
-
-    subgraph Runtime["clinkz-wot Runtime"]
-        TD["Thing Descriptions"]
-        SERVIENT["Servient"]
-        PLAN["Immutable Interaction Plans"]
-        SPI["Protocol Binding SPI"]
-    end
-
-    subgraph Bindings["Protocol Bindings"]
-        ZENOH["Zenoh"]
-        MQTT["MQTT"]
-        HTTP["HTTP"]
-        OTHER["Other Bindings"]
-    end
-
-    subgraph Things["Connected Things"]
-        DEVICE["Devices"]
-        EDGE["Edge Systems"]
-        CLOUD["Cloud Services"]
-        SOFTWARE["Software Capabilities"]
-    end
-
-    Experience --> Platform
-    Platform --> Runtime
-
-    TD --> PLAN
-    SERVIENT --> PLAN
-    PLAN --> SPI
-
-    SPI --> Bindings
-    Bindings --> Things
+    A --> P --> R --> B --> T
 ```
 
-The responsibilities are intentionally separated:
-
-| Layer                 | Responsibility                                                                |
-| --------------------- | ----------------------------------------------------------------------------- |
-| **ClinkZ**            | Platform services, applications, operations, deployment, and user experience  |
-| **clinkz-wot**        | Protocol-neutral WoT semantics, planning, orchestration, and runtime behavior |
-| **Protocol bindings** | Protocol syntax, transport I/O, correlation, and protocol-local state         |
-| **Things**            | Devices, services, systems, data, and software capabilities                   |
+| Layer                 | Responsibility                                                                 |
+| --------------------- | ------------------------------------------------------------------------------ |
+| **Applications**      | User interfaces, applications, automation, and AI-assisted services            |
+| **ClinkZ**            | Platform APIs, Thing discovery, security, observability, and operations        |
+| **clinkz-wot**        | Protocol-neutral WoT semantics, planning, orchestration, and lifecycle         |
+| **Protocol bindings** | Protocol syntax, transport I/O, correlation, and protocol-local state          |
+| **Things**            | Devices, edge systems, cloud services, data sources, and software capabilities |
 
 Zenoh is the first concrete protocol binding implemented by `clinkz-wot`.
-Additional bindings can be composed without changing the protocol-neutral
+Additional bindings can be added without changing the protocol-neutral
 interaction model.
+
 
 ## Why ClinkZ?
 
